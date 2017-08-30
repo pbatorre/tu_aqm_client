@@ -1,4 +1,6 @@
 require "bundler/setup"
+require "savon/mock/spec_helper"
+require "pry-nav"
 require "tu_aqm_client"
 
 RSpec.configure do |config|
