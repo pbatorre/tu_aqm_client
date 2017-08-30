@@ -6,5 +6,6 @@ require "tu_aqm_client/version"
 require "tu_aqm_client/soap_client"
 require "tu_aqm_client/errors"
 require "tu_aqm_client/base_request"
+require "tu_aqm_client/base_response"
 
 module TuAqmClient; end
