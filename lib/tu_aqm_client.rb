@@ -1,5 +1,15 @@
+require "httparty"
+require "nokogiri"
+require "htmlentities"
+require "active_support/core_ext/hash/conversions"
+
 require "tu_aqm_client/version"
+require "tu_aqm_client/base_request"
+require "tu_aqm_client/request/execute_xml_string"
+require "tu_aqm_client/services/get_credit_report"
 
 module TuAqmClient
-  # Your code goes here...
+  def self.get_credit_report(params)
+    Services::GetCreditReport.new(params).execute
+  end
 end
