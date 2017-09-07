@@ -155,6 +155,10 @@ module TuAqmClient
       it "executes", vcr: {record: :once} do
         expect(credit_report).to eq expected_credit_report
       end
+
+      it "throws a MissingFieldError", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::MissingFieldsError
+      end
     end
   end
 end

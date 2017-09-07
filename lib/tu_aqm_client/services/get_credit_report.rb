@@ -1,5 +1,8 @@
 module TuAqmClient
   module Services
+    class MissingFieldsError < StandardError; end
+    class CreditReportExtractionError < StandardError; end
+
     class GetCreditReport
       attr_accessor :user_id
       attr_accessor :password
@@ -79,9 +82,49 @@ module TuAqmClient
       def build_credit_report(response)
         response_hash = Hash.from_xml(response.body)
         dc_response = Hash.from_xml(response_hash["Envelope"]["Body"]["ExecuteXMLStringResponse"]["ExecuteXMLStringResult"])
-        object_response = Hash.from_xml(dc_response["DCResponse"]["ContextData"]["Field"].last)
 
-        Hash.from_xml(object_response["object"]["Applicant"]["CreditReport"])
+        xmls = extract_xmls(dc_response["DCResponse"]["ContextData"]["Field"])
+        raise_missing_field_error(xmls)
+
+        extract_credit_report(xmls)
+      end
+
+      # Collects XML files. Ignores non-xmls
+      def extract_xmls(array)
+        array.map do |e|
+          begin
+            Hash.from_xml(e)
+          rescue
+          end
+        end.compact
+      end
+
+      # Retrieve hash with key = "object"
+      def extract_credit_report(xmls)
+        # Extract xml with "object" tag
+        object_xml = xmls.find do |xml|
+          xml.keys.include? "object"
+        end
+
+        begin
+          return Hash.from_xml(object_xml["object"]["Applicant"]["CreditReport"])
+        rescue
+          raise(
+            CreditReportExtractionError,
+            "Error extracting the credit report due do unexpected response"
+          )
+        end
+      end
+
+      def raise_missing_field_error(xmls)
+        xmls.each do |xml|
+          if xml.keys.include? "ReasonsTrail"
+            raise(
+              MissingFieldsError,
+              xml.to_json,
+            )
+          end
+        end
       end
     end
   end
