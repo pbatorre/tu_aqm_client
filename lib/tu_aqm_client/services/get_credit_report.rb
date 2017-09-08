@@ -1,5 +1,6 @@
 module TuAqmClient
   module Services
+    class ResponseError < StandardError; end
     class MissingFieldsError < StandardError; end
     class CreditReportExtractionError < StandardError; end
 
@@ -19,6 +20,7 @@ module TuAqmClient
       attr_accessor :address
       attr_accessor :contact_number_type
       attr_accessor :contact_number
+      attr_accessor :bureau_request_type
 
       def initialize(
         user_id:,
@@ -35,7 +37,8 @@ module TuAqmClient
         address_type:,
         address:,
         contact_number_type:,
-        contact_number:
+        contact_number:,
+        bureau_request_type:
       )
 
         @user_id = user_id
@@ -53,6 +56,7 @@ module TuAqmClient
         @address = address
         @contact_number_type = contact_number_type
         @contact_number = contact_number
+        @bureau_request_type = bureau_request_type
       end
 
       def execute
@@ -72,6 +76,7 @@ module TuAqmClient
           address: address,
           contact_number_type: contact_number_type,
           contact_number: contact_number,
+          bureau_request_type: bureau_request_type,
         ).execute
 
         build_credit_report(response)
@@ -82,6 +87,8 @@ module TuAqmClient
       def build_credit_report(response)
         response_hash = Hash.from_xml(response.body)
         dc_response = Hash.from_xml(response_hash["Envelope"]["Body"]["ExecuteXMLStringResponse"]["ExecuteXMLStringResult"])
+
+        raise_response_error(dc_response)
 
         xmls = extract_xmls(dc_response["DCResponse"]["ContextData"]["Field"])
         raise_missing_field_error(xmls)
@@ -118,13 +125,21 @@ module TuAqmClient
 
       def raise_missing_field_error(xmls)
         xmls.each do |xml|
-          if xml.keys.include? "ReasonsTrail"
+          if xml["ReasonsTrail"]
             raise(
               MissingFieldsError,
               xml.to_json,
             )
           end
         end
+      end
+
+      def raise_response_error(dc_response)
+        raise(
+          ResponseError,
+          dc_response.to_json
+        ) if dc_response["DCResponse"]["Status"] == "Failed" ||
+          dc_response["DCResponse"]["Status"] == "Exception"
       end
     end
   end

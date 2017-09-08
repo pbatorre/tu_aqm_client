@@ -1,0 +1,140 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://localhost:8444/DCAQM/TU.IDS.ExternalServices/SolutionExecution/ExternalSolutionExecution.svc
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0"?><s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body><ExecuteXMLString
+        xmlns="http://tempuri.org/"><request>&lt;DCRequest              xmlns=&quot;http://transunion.com/dc/extsvc&quot;&gt;              &lt;Authentication
+        type=&quot;OnDemand&quot;&gt;                  &lt;UserId&gt;firstcircle_admin01&lt;/UserId&gt;                  &lt;Password&gt;Password@123&lt;/Password&gt;              &lt;/Authentication&gt;              &lt;RequestInfo&gt;                  &lt;ExecutionMode&gt;NewWithContext&lt;/ExecutionMode&gt;                  &lt;SolutionSetId&gt;97&lt;/SolutionSetId&gt;                  &lt;ExecuteLatestVersion&gt;true&lt;/ExecuteLatestVersion&gt;              &lt;/RequestInfo&gt;              &lt;Fields&gt;                  &lt;Field
+        key=&quot;ApplicationReceiptDate&quot;&gt;22Aug2017&lt;/Field&gt;                  &lt;Field
+        key=&quot;Channel&quot;&gt;1&lt;/Field&gt;                  &lt;Field key=&quot;CurrencyCode&quot;&gt;PHP&lt;/Field&gt;                  &lt;Field
+        key=&quot;CurrentDate&quot;&gt;22Aug2017&lt;/Field&gt;                  &lt;Field
+        key=&quot;EnquiryAccountType&quot;&gt;3000&lt;/Field&gt;                  &lt;Field
+        key=&quot;InquiryAmount&quot;&gt;93000&lt;/Field&gt;                  &lt;Field
+        key=&quot;Product&quot;&gt;1&lt;/Field&gt;                  &lt;Field key=&quot;SubProduct&quot;&gt;1&lt;/Field&gt;                  &lt;Field
+        key=&quot;BCLib_BureauRequestType&quot;&gt;uat&lt;/Field&gt;                  &lt;Field
+        key=&quot;Applicants&quot;&gt;                      &lt;![CDATA[                          &lt;object&gt;                              &lt;Applicant&gt;                                  &lt;Title&gt;1&lt;/Title&gt;                                  &lt;FirstName&gt;Daenerys&lt;/FirstName&gt;                                  &lt;MiddleName&gt;&lt;/MiddleName&gt;                                  &lt;LastName&gt;Stomborn&lt;/LastName&gt;                                  &lt;Gender&gt;&lt;/Gender&gt;                                  &lt;DateOfBirth&gt;07Aug1987&lt;/DateOfBirth&gt;                                  &lt;PlaceOfBirth&gt;&lt;/PlaceOfBirth&gt;                                  &lt;CivilStatus&gt;S&lt;/CivilStatus&gt;                                  &lt;IdType&gt;TIN&lt;/IdType&gt;                                  &lt;IdNumber&gt;160083344&lt;/IdNumber&gt;                                  &lt;IdExpireDate&gt;&lt;/IdExpireDate&gt;                                  &lt;Citizenship&gt;PHL&lt;/Citizenship&gt;                                  &lt;NumberOfDependants&gt;&lt;/NumberOfDependants&gt;                                  &lt;CarOwnership
+        /&gt;                                  &lt;HomeOwnership /&gt;                                  &lt;YearsOfResidence&gt;&lt;/YearsOfResidence&gt;                                  &lt;MothersMaidenName&gt;&lt;/MothersMaidenName&gt;                                  &lt;AddressType&gt;R&lt;/AddressType&gt;                                  &lt;AddressLine1&gt;Address&lt;/AddressLine1&gt;                                  &lt;AddressLine2&gt;&lt;/AddressLine2&gt;                                  &lt;AddressLine3&gt;&lt;/AddressLine3&gt;                                  &lt;AddressLine4&gt;&lt;/AddressLine4&gt;                                  &lt;PostalZipCode&gt;&lt;/PostalZipCode&gt;                                  &lt;Country&gt;PHL&lt;/Country&gt;                                  &lt;ContactNumberType&gt;R&lt;/ContactNumberType&gt;                                  &lt;CountryCode&gt;&lt;/CountryCode&gt;                                  &lt;AreaCode&gt;&lt;/AreaCode&gt;                                  &lt;PhoneNumber&gt;09986732889&lt;/PhoneNumber&gt;                                  &lt;Extension&gt;&lt;/Extension&gt;                                  &lt;EmailAddress&gt;&lt;/EmailAddress&gt;                                  &lt;EmploymentType&gt;E&lt;/EmploymentType&gt;                                  &lt;EmploymentStatus&gt;1&lt;/EmploymentStatus&gt;                                  &lt;NatureOfBusiness&gt;99&lt;/NatureOfBusiness&gt;                                  &lt;Occupation&gt;99&lt;/Occupation&gt;                                  &lt;CompanyName&gt;Company&lt;/CompanyName&gt;                                  &lt;EmploymentTimeYears&gt;&lt;/EmploymentTimeYears&gt;                                  &lt;EmploymentTimeMonths&gt;&lt;/EmploymentTimeMonths&gt;                                  &lt;YearsInBusiness&gt;&lt;/YearsInBusiness&gt;                                  &lt;GrossAnnualIncome&gt;600000&lt;/GrossAnnualIncome&gt;                                  &lt;GrossMonthlyIncome&gt;&lt;/GrossMonthlyIncome&gt;                                  &lt;EmploymentCurrencyCode&gt;&lt;/EmploymentCurrencyCode&gt;                                  &lt;PositionLevel
+        /&gt;                                  &lt;PositionTitle&gt;&lt;/PositionTitle&gt;                                  &lt;SourceOfFunds
+        /&gt;                                  &lt;AliasFirstName&gt;&lt;/AliasFirstName&gt;                                  &lt;AliasMiddleName&gt;&lt;/AliasMiddleName&gt;                                  &lt;AliasLastName&gt;&lt;/AliasLastName&gt;                                  &lt;AliasMothersMaidenName&gt;&lt;/AliasMothersMaidenName&gt;                                  &lt;BankCode&gt;&lt;/BankCode&gt;                                  &lt;CardReferenceNo&gt;&lt;/CardReferenceNo&gt;                                  &lt;CarMake&gt;&lt;/CarMake&gt;                                  &lt;CarModel&gt;&lt;/CarModel&gt;                                  &lt;SumOfAssets&gt;&lt;/SumOfAssets&gt;                                  &lt;EducationLevel
+        /&gt;                              &lt;/Applicant&gt;                          &lt;/object&gt;                      ]]&gt;                  &lt;/Field&gt;                 &lt;Field
+        key=&quot;Const_FolderPath&quot;&gt;C:LocalizationSimfiles&lt;/Field&gt;              &lt;/Fields&gt;          &lt;/DCRequest&gt;</request></ExecuteXMLString></s:Body></s:Envelope>
+    headers:
+      Content-Type:
+      - text/xml; charset=utf-8
+      Soapaction:
+      - http://tempuri.org/IExternalSolutionExecution/ExecuteXMLString
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '5514'
+      Content-Type:
+      - text/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.5
+      X-Powered-By:
+      - ASP.NET
+      - ASP.NET
+      Date:
+      - Fri, 08 Sep 2017 03:19:18 GMT
+    body:
+      encoding: UTF-8
+      string: |-
+        <s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body><ExecuteXMLStringResponse xmlns="http://tempuri.org/"><ExecuteXMLStringResult>&lt;?xml version="1.0"?&gt;&lt;DCResponse&gt;&lt;Status&gt;Success&lt;/Status&gt;&lt;Authentication&gt;&lt;Status&gt;Success&lt;/Status&gt;&lt;Token&gt;e5b5e261-01b8-4028-ae99-525b67af0cad&lt;/Token&gt;&lt;/Authentication&gt;&lt;ResponseInfo&gt;&lt;ApplicationId&gt;85495&lt;/ApplicationId&gt;&lt;SolutionSetInstanceId&gt;0570c127-ba21-4f41-952f-561b041cb0cc&lt;/SolutionSetInstanceId&gt;&lt;CurrentQueue&gt;InputQ&lt;/CurrentQueue&gt;&lt;/ResponseInfo&gt;&lt;ContextData&gt;&lt;Field key="Applicants"&gt;&amp;lt;object&amp;gt;&#xD;
+        &amp;lt;Applicant&amp;gt;&#xD;
+        &amp;lt;EducationLevel/&amp;gt;&#xD;
+        &amp;lt;SumOfAssets&amp;gt;&#xD;
+        &amp;lt;/SumOfAssets&amp;gt;&#xD;
+        &amp;lt;CarModel&amp;gt;&#xD;
+        &amp;lt;/CarModel&amp;gt;&#xD;
+        &amp;lt;CarMake&amp;gt;&#xD;
+        &amp;lt;/CarMake&amp;gt;&#xD;
+        &amp;lt;CardReferenceNo&amp;gt;&#xD;
+        &amp;lt;/CardReferenceNo&amp;gt;&#xD;
+        &amp;lt;BankCode&amp;gt;&#xD;
+        &amp;lt;/BankCode&amp;gt;&#xD;
+        &amp;lt;AliasMothersMaidenName&amp;gt;&#xD;
+        &amp;lt;/AliasMothersMaidenName&amp;gt;&#xD;
+        &amp;lt;AliasLastName&amp;gt;&#xD;
+        &amp;lt;/AliasLastName&amp;gt;&#xD;
+        &amp;lt;AliasMiddleName&amp;gt;&#xD;
+        &amp;lt;/AliasMiddleName&amp;gt;&#xD;
+        &amp;lt;AliasFirstName&amp;gt;&#xD;
+        &amp;lt;/AliasFirstName&amp;gt;&#xD;
+        &amp;lt;SourceOfFunds/&amp;gt;&#xD;
+        &amp;lt;PositionTitle&amp;gt;&#xD;
+        &amp;lt;/PositionTitle&amp;gt;&#xD;
+        &amp;lt;PositionLevel/&amp;gt;&#xD;
+        &amp;lt;EmploymentCurrencyCode&amp;gt;&#xD;
+        &amp;lt;/EmploymentCurrencyCode&amp;gt;&#xD;
+        &amp;lt;GrossMonthlyIncome&amp;gt;&#xD;
+        &amp;lt;/GrossMonthlyIncome&amp;gt;&#xD;
+        &amp;lt;GrossAnnualIncome&amp;gt;600000&amp;lt;/GrossAnnualIncome&amp;gt;&#xD;
+        &amp;lt;YearsInBusiness&amp;gt;&#xD;
+        &amp;lt;/YearsInBusiness&amp;gt;&#xD;
+        &amp;lt;EmploymentTimeMonths&amp;gt;&#xD;
+        &amp;lt;/EmploymentTimeMonths&amp;gt;&#xD;
+        &amp;lt;EmploymentTimeYears&amp;gt;&#xD;
+        &amp;lt;/EmploymentTimeYears&amp;gt;&#xD;
+        &amp;lt;CompanyName&amp;gt;Company&amp;lt;/CompanyName&amp;gt;&#xD;
+        &amp;lt;Occupation&amp;gt;99&amp;lt;/Occupation&amp;gt;&#xD;
+        &amp;lt;NatureOfBusiness&amp;gt;99&amp;lt;/NatureOfBusiness&amp;gt;&#xD;
+        &amp;lt;EmploymentStatus&amp;gt;1&amp;lt;/EmploymentStatus&amp;gt;&#xD;
+        &amp;lt;EmploymentType&amp;gt;E&amp;lt;/EmploymentType&amp;gt;&#xD;
+        &amp;lt;EmailAddress&amp;gt;&#xD;
+        &amp;lt;/EmailAddress&amp;gt;&#xD;
+        &amp;lt;Extension&amp;gt;&#xD;
+        &amp;lt;/Extension&amp;gt;&#xD;
+        &amp;lt;PhoneNumber&amp;gt;09986732889&amp;lt;/PhoneNumber&amp;gt;&#xD;
+        &amp;lt;AreaCode&amp;gt;&#xD;
+        &amp;lt;/AreaCode&amp;gt;&#xD;
+        &amp;lt;CountryCode&amp;gt;&#xD;
+        &amp;lt;/CountryCode&amp;gt;&#xD;
+        &amp;lt;ContactNumberType&amp;gt;R&amp;lt;/ContactNumberType&amp;gt;&#xD;
+        &amp;lt;Country&amp;gt;PHL&amp;lt;/Country&amp;gt;&#xD;
+        &amp;lt;PostalZipCode&amp;gt;&#xD;
+        &amp;lt;/PostalZipCode&amp;gt;&#xD;
+        &amp;lt;AddressLine4&amp;gt;&#xD;
+        &amp;lt;/AddressLine4&amp;gt;&#xD;
+        &amp;lt;AddressLine3&amp;gt;&#xD;
+        &amp;lt;/AddressLine3&amp;gt;&#xD;
+        &amp;lt;AddressLine2&amp;gt;&#xD;
+        &amp;lt;/AddressLine2&amp;gt;&#xD;
+        &amp;lt;AddressLine1&amp;gt;Address&amp;lt;/AddressLine1&amp;gt;&#xD;
+        &amp;lt;AddressType&amp;gt;R&amp;lt;/AddressType&amp;gt;&#xD;
+        &amp;lt;MothersMaidenName&amp;gt;&#xD;
+        &amp;lt;/MothersMaidenName&amp;gt;&#xD;
+        &amp;lt;YearsOfResidence&amp;gt;&#xD;
+        &amp;lt;/YearsOfResidence&amp;gt;&#xD;
+        &amp;lt;HomeOwnership/&amp;gt;&#xD;
+        &amp;lt;CarOwnership/&amp;gt;&#xD;
+        &amp;lt;NumberOfDependants&amp;gt;&#xD;
+        &amp;lt;/NumberOfDependants&amp;gt;&#xD;
+        &amp;lt;Citizenship&amp;gt;PHL&amp;lt;/Citizenship&amp;gt;&#xD;
+        &amp;lt;IdExpireDate&amp;gt;&#xD;
+        &amp;lt;/IdExpireDate&amp;gt;&#xD;
+        &amp;lt;IdNumber&amp;gt;160083344&amp;lt;/IdNumber&amp;gt;&#xD;
+        &amp;lt;IdType&amp;gt;TIN&amp;lt;/IdType&amp;gt;&#xD;
+        &amp;lt;CivilStatus&amp;gt;S&amp;lt;/CivilStatus&amp;gt;&#xD;
+        &amp;lt;PlaceOfBirth&amp;gt;&#xD;
+        &amp;lt;/PlaceOfBirth&amp;gt;&#xD;
+        &amp;lt;DateOfBirth&amp;gt;07Aug1987&amp;lt;/DateOfBirth&amp;gt;&#xD;
+        &amp;lt;Gender&amp;gt;&#xD;
+        &amp;lt;/Gender&amp;gt;&#xD;
+        &amp;lt;LastName&amp;gt;Stomborn&amp;lt;/LastName&amp;gt;&#xD;
+        &amp;lt;MiddleName&amp;gt;&#xD;
+        &amp;lt;/MiddleName&amp;gt;&#xD;
+        &amp;lt;FirstName&amp;gt;Daenerys&amp;lt;/FirstName&amp;gt;&#xD;
+        &amp;lt;Title&amp;gt;1&amp;lt;/Title&amp;gt;&#xD;
+        &amp;lt;AllReasons&amp;gt;&amp;amp;lt;Reason Code=&amp;amp;quot;Gender&amp;amp;quot; Type=&amp;amp;quot;Numeric&amp;amp;quot; Description=&amp;amp;quot;Gender is null&amp;amp;quot; /&amp;amp;gt;&amp;lt;/AllReasons&amp;gt;&#xD;
+        &amp;lt;/Applicant&amp;gt;&#xD;
+        &amp;lt;/object&amp;gt;&#xD;
+        &lt;/Field&gt;&lt;Field key="ApplicationReceiptDate"&gt;8/22/2017 12:00:00 AM&lt;/Field&gt;&lt;Field key="CurrentDate"&gt;8/22/2017 12:00:00 AM&lt;/Field&gt;&lt;Field key="EnquiryAccountType"&gt;3000&lt;/Field&gt;&lt;Field key="EnquiryPurpose"&gt;&lt;/Field&gt;&lt;Field key="InquiryAmount"&gt;93000&lt;/Field&gt;&lt;Field key="ReasonsTrail"&gt;&amp;lt;ReasonsTrail&amp;gt;&amp;lt;Reason&amp;gt;&amp;lt;Applicant&amp;gt;Daenerys Stomborn&amp;lt;/Applicant&amp;gt;&amp;lt;Code&amp;gt;Gender&amp;lt;/Code&amp;gt;&amp;lt;Type&amp;gt;Numeric&amp;lt;/Type&amp;gt;&amp;lt;Description&amp;gt;Gender is null&amp;lt;/Description&amp;gt;&amp;lt;/Reason&amp;gt;&amp;lt;/ReasonsTrail&amp;gt;&lt;/Field&gt;&lt;Field key="Channel"&gt;1&lt;/Field&gt;&lt;Field key="Product"&gt;1&lt;/Field&gt;&lt;Field key="SubProduct"&gt;1&lt;/Field&gt;&lt;/ContextData&gt;&lt;/DCResponse&gt;</ExecuteXMLStringResult></ExecuteXMLStringResponse></s:Body></s:Envelope>
+    http_version: 
+  recorded_at: Fri, 08 Sep 2017 03:19:19 GMT
+recorded_with: VCR 3.0.3

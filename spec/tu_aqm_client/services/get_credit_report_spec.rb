@@ -18,6 +18,7 @@ module TuAqmClient
       let(:address) { "Address" }
       let(:contact_number_type) { "R" }
       let(:contact_number) { "09986732889" }
+      let(:bureau_request_type) { "uat" }
 
       let(:credit_report) do
         TuAqmClient::Services::GetCreditReport.new(
@@ -36,6 +37,7 @@ module TuAqmClient
           address: address,
           contact_number_type: contact_number_type,
           contact_number: contact_number,
+          bureau_request_type: bureau_request_type,
         ).execute
       end
 
@@ -156,7 +158,109 @@ module TuAqmClient
         expect(credit_report).to eq expected_credit_report
       end
 
+      # VCR dependent
       it "throws a MissingFieldError", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::MissingFieldsError
+      end
+
+      # VCR dependent
+      it "throws an RequestError for wrong username", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::ResponseError
+      end
+
+      # VCR dependent
+      it "throws an RequestError for wrong password", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::ResponseError
+      end
+
+      # VCR dependent
+      it "throws an RequestError for wrong ExecutionMode", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::ResponseError
+      end
+
+      # VCR dependent
+      it "throws an RequestError for wrong SolutionSetId", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::ResponseError
+      end
+
+      # VCR dependent
+      it "throws an RequestError for wrong ExecuteLatestVersion", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::ResponseError
+      end
+
+      # VCR dependent
+      it "throws an RequestError for wrong ApplicationReceiptDate", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::ResponseError
+      end
+
+      # VCR dependent
+      it "throws an RequestError for wrong ApplicationReceiptDate", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::ResponseError
+      end
+
+      # VCR dependent
+      it "throws an RequestError for wrong EnquiryAccountType", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::MissingFieldsError
+      end
+
+      # VCR dependent
+      it "throws an error for wrong InquiryAmount", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::MissingFieldsError
+      end
+
+      # VCR dependent
+      it "throws an error for wrong Product", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::MissingFieldsError
+      end
+
+      # VCR dependent
+      it "throws an error for wrong SubProduct", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::MissingFieldsError
+      end
+
+      # VCR dependent
+      it "throws an error for wrong BCLib_BureauRequestType", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::MissingFieldsError
+      end
+
+      # VCR dependent
+      it "throws an error for wrong EmploymentStatus", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::MissingFieldsError
+      end
+
+      it "throws an error for wrong FirstName", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::MissingFieldsError
+      end
+
+      it "throws an error for wrong LastName", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::MissingFieldsError
+      end
+
+      it "throws an error for wrong Gender", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::MissingFieldsError
+      end
+
+      it "throws an error for wrong DateOfBirth", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::MissingFieldsError
+      end
+
+      it "throws an error for wrong IDNumber", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::MissingFieldsError
+      end
+
+      it "throws an error for wrong AddressType", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::MissingFieldsError
+      end
+
+      it "throws an error for wrong AddressLine1", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::MissingFieldsError
+      end
+
+      it "throws an error for wrong ContactNumberType", vcr: {record: :once} do
+        expect { credit_report }.to raise_error TuAqmClient::Services::MissingFieldsError
+      end
+
+      it "throws an error for wrong ContactNumber", vcr: {record: :once} do
         expect { credit_report }.to raise_error TuAqmClient::Services::MissingFieldsError
       end
     end

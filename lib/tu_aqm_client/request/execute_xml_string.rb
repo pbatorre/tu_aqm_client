@@ -16,6 +16,7 @@ module TuAqmClient
       attr_accessor :address
       attr_accessor :contact_number_type
       attr_accessor :contact_number
+      attr_accessor :bureau_request_type
 
       SOAP_ACTION = "http://tempuri.org/IExternalSolutionExecution/ExecuteXMLString"
 
@@ -34,7 +35,8 @@ module TuAqmClient
         address_type:,
         address:,
         contact_number_type:,
-        contact_number:
+        contact_number:,
+        bureau_request_type:
       )
 
         @user_id = user_id
@@ -52,6 +54,7 @@ module TuAqmClient
         @address = address
         @contact_number_type = contact_number_type
         @contact_number = contact_number
+        @bureau_request_type = bureau_request_type
       end
 
       def body
@@ -82,7 +85,7 @@ module TuAqmClient
                   <Field key=\"InquiryAmount\"></Field>
                   <Field key=\"Product\"></Field>
                   <Field key=\"SubProduct\"></Field>
-                  <Field key=\"BCLib_BureauRequestType\">uat</Field>
+                  <Field key=\"BCLib_BureauRequestType\">#{bureau_request_type}</Field>
                   <Field key=\"Applicants\">
                       <![CDATA[
                           <object>
