@@ -19,6 +19,11 @@ module TuAqmClient
       let(:contact_number_type) { "R" }
       let(:contact_number) { "09986732889" }
       let(:bureau_request_type) { "uat" }
+      let(:enquiry_account_type) { "3000" }
+      let(:inquiry_amount) { "93000" }
+      let(:postal_zip_code) { "1880" }
+      let(:country_code) { "63" }
+      let(:area_code) { "63" }
 
       let(:credit_report) do
         TuAqmClient::Services::GetCreditReport.new(
@@ -38,6 +43,11 @@ module TuAqmClient
           contact_number_type: contact_number_type,
           contact_number: contact_number,
           bureau_request_type: bureau_request_type,
+          enquiry_account_type: enquiry_account_type,
+          inquiry_amount: inquiry_amount,
+          postal_zip_code: postal_zip_code,
+          country_code: country_code,
+          area_code: area_code,
         ).execute
       end
 

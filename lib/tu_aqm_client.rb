@@ -1,6 +1,6 @@
 require "httparty"
-require "nokogiri"
 require "htmlentities"
+require "saxerator"
 require "active_support/core_ext/hash/conversions"
 
 require "tu_aqm_client/version"

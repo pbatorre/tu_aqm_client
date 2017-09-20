@@ -17,6 +17,11 @@ module TuAqmClient
       attr_accessor :contact_number_type
       attr_accessor :contact_number
       attr_accessor :bureau_request_type
+      attr_accessor :enquiry_account_type
+      attr_accessor :inquiry_amount
+      attr_accessor :postal_zip_code
+      attr_accessor :country_code
+      attr_accessor :area_code
 
       SOAP_ACTION = "http://tempuri.org/IExternalSolutionExecution/ExecuteXMLString"
 
@@ -36,7 +41,12 @@ module TuAqmClient
         address:,
         contact_number_type:,
         contact_number:,
-        bureau_request_type:
+        bureau_request_type:,
+        enquiry_account_type:,
+        inquiry_amount:,
+        postal_zip_code:,
+        country_code:,
+        area_code:
       )
 
         @user_id = user_id
@@ -55,6 +65,12 @@ module TuAqmClient
         @contact_number_type = contact_number_type
         @contact_number = contact_number
         @bureau_request_type = bureau_request_type
+
+        @enquiry_account_type = enquiry_account_type
+        @inquiry_amount = inquiry_amount
+        @postal_zip_code = postal_zip_code
+        @country_code = country_code
+        @area_code = area_code
       end
 
       def body
@@ -81,10 +97,10 @@ module TuAqmClient
                   <Field key=\"Channel\">1</Field>
                   <Field key=\"CurrencyCode\">PHP</Field>
                   <Field key=\"CurrentDate\">#{current_date}</Field>
-                  <Field key=\"EnquiryAccountType\"></Field>
-                  <Field key=\"InquiryAmount\"></Field>
-                  <Field key=\"Product\"></Field>
-                  <Field key=\"SubProduct\"></Field>
+                  <Field key=\"EnquiryAccountType\">#{enquiry_account_type}</Field>
+                  <Field key=\"InquiryAmount\">#{inquiry_amount}</Field>
+                  <Field key=\"Product\">1</Field>
+                  <Field key=\"SubProduct\">1</Field>
                   <Field key=\"BCLib_BureauRequestType\">#{bureau_request_type}</Field>
                   <Field key=\"Applicants\">
                       <![CDATA[
@@ -101,22 +117,22 @@ module TuAqmClient
                                   <IdType>#{id_type}</IdType>
                                   <IdNumber>#{id_number}</IdNumber>
                                   <IdExpireDate></IdExpireDate>
-                                  <Citizenship></Citizenship>
+                                  <Citizenship>PHL</Citizenship>
                                   <NumberOfDependants></NumberOfDependants>
                                   <CarOwnership />
                                   <HomeOwnership />
                                   <YearsOfResidence></YearsOfResidence>
                                   <MothersMaidenName></MothersMaidenName>
-                                  <AddressType>#{address_type}</AddressType>
+                                  <AddressType>R</AddressType>
                                   <AddressLine1>#{address}</AddressLine1>
                                   <AddressLine2></AddressLine2>
                                   <AddressLine3></AddressLine3>
                                   <AddressLine4></AddressLine4>
-                                  <PostalZipCode></PostalZipCode>
+                                  <PostalZipCode>#{postal_zip_code}</PostalZipCode>
                                   <Country>PHL</Country>
                                   <ContactNumberType>#{contact_number_type}</ContactNumberType>
-                                  <CountryCode></CountryCode>
-                                  <AreaCode></AreaCode>
+                                  <CountryCode>#{country_code}</CountryCode>
+                                  <AreaCode>#{area_code}</AreaCode>
                                   <PhoneNumber>#{contact_number}</PhoneNumber>
                                   <Extension></Extension>
                                   <EmailAddress></EmailAddress>

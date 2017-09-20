@@ -21,6 +21,11 @@ module TuAqmClient
       attr_accessor :contact_number_type
       attr_accessor :contact_number
       attr_accessor :bureau_request_type
+      attr_accessor :enquiry_account_type
+      attr_accessor :inquiry_amount
+      attr_accessor :postal_zip_code
+      attr_accessor :country_code
+      attr_accessor :area_code
 
       def initialize(
         user_id:,
@@ -38,7 +43,12 @@ module TuAqmClient
         address:,
         contact_number_type:,
         contact_number:,
-        bureau_request_type:
+        bureau_request_type:,
+        enquiry_account_type:,
+        inquiry_amount:,
+        postal_zip_code:,
+        country_code:,
+        area_code:
       )
 
         @user_id = user_id
@@ -57,6 +67,11 @@ module TuAqmClient
         @contact_number_type = contact_number_type
         @contact_number = contact_number
         @bureau_request_type = bureau_request_type
+        @enquiry_account_type = enquiry_account_type
+        @inquiry_amount = inquiry_amount
+        @postal_zip_code = postal_zip_code
+        @country_code = country_code
+        @area_code = area_code
       end
 
       def execute
@@ -77,6 +92,11 @@ module TuAqmClient
           contact_number_type: contact_number_type,
           contact_number: contact_number,
           bureau_request_type: bureau_request_type,
+          enquiry_account_type: enquiry_account_type,
+          inquiry_amount: inquiry_amount,
+          postal_zip_code: postal_zip_code,
+          country_code: country_code,
+          area_code: area_code,
         ).execute
 
         build_credit_report(response)
@@ -85,8 +105,9 @@ module TuAqmClient
       private
 
       def build_credit_report(response)
-        response_hash = Hash.from_xml(response.body)
-        dc_response = Hash.from_xml(response_hash["Envelope"]["Body"]["ExecuteXMLStringResponse"]["ExecuteXMLStringResult"])
+        response_hash = Saxerator.parser(response.body)
+
+        dc_response = Hash.from_xml(response_hash.for_tag("s:Body").first["ExecuteXMLStringResponse"]["ExecuteXMLStringResult"])
 
         raise_response_error(dc_response)
 

@@ -22,9 +22,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "httparty"
-  spec.add_dependency "nokogiri"
   spec.add_dependency "htmlentities"
   spec.add_dependency "activesupport"
+  spec.add_dependency "saxerator"
 
   spec.add_development_dependency("vcr", "~> 3.0.1")
   spec.add_development_dependency "bundler", "~> 1.15"
