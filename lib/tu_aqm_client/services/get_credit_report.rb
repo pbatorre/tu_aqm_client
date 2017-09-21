@@ -26,6 +26,7 @@ module TuAqmClient
       attr_accessor :country_code
       attr_accessor :area_code
       attr_accessor :company_name
+      attr_accessor :email_address
 
       def initialize(
         user_id:,
@@ -49,7 +50,8 @@ module TuAqmClient
         postal_zip_code:,
         country_code:,
         area_code:,
-        company_name:
+        company_name:,
+        email_address:
       )
 
         @user_id = user_id
@@ -74,6 +76,7 @@ module TuAqmClient
         @country_code = country_code
         @area_code = area_code
         @company_name = company_name
+        @email_address = email_address
       end
 
       def execute
@@ -100,6 +103,7 @@ module TuAqmClient
           country_code: country_code,
           area_code: area_code,
           company_name: company_name,
+          email_address: email_address,
         ).execute
 
         build_credit_report(response)

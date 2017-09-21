@@ -23,6 +23,7 @@ module TuAqmClient
       attr_accessor :country_code
       attr_accessor :area_code
       attr_accessor :company_name
+      attr_accessor :email_address
 
       SOAP_ACTION = "http://tempuri.org/IExternalSolutionExecution/ExecuteXMLString"
 
@@ -48,7 +49,8 @@ module TuAqmClient
         postal_zip_code:,
         country_code:,
         area_code:,
-        company_name:
+        company_name:,
+        email_address:
       )
 
         @user_id = user_id
@@ -74,6 +76,7 @@ module TuAqmClient
         @country_code = country_code
         @area_code = area_code
         @company_name = company_name
+        @email_address = email_address
       end
 
       def body
@@ -138,7 +141,7 @@ module TuAqmClient
                                   <AreaCode>#{area_code}</AreaCode>
                                   <PhoneNumber>#{contact_number}</PhoneNumber>
                                   <Extension></Extension>
-                                  <EmailAddress></EmailAddress>
+                                  <EmailAddress>#{email_address}</EmailAddress>
                                   <EmploymentType>S</EmploymentType>
                                   <EmploymentStatus>11</EmploymentStatus>
                                   <NatureOfBusiness>99</NatureOfBusiness>

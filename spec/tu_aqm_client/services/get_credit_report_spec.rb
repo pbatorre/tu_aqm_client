@@ -25,6 +25,7 @@ module TuAqmClient
       let(:country_code) { "63" }
       let(:area_code) { "0" }
       let(:company_name) { "XYZ" }
+      let(:email_address) { "neil@email.com" }
 
       let(:credit_report) do
         TuAqmClient::Services::GetCreditReport.new(
@@ -50,6 +51,7 @@ module TuAqmClient
           country_code: country_code,
           area_code: area_code,
           company_name: company_name,
+          email_address: email_address,
         ).execute
       end
 
