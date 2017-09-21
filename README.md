@@ -24,8 +24,6 @@ Or install it yourself as:
 
 ```
 TU_AQM_ENDPOINT="https://tu_aqm_endpoint.svc"
-TU_AQM_USERID="username_given_by_tu"
-TU_AQM_PASSWORD="password_given_by_tu"
 ```
 
 ### To retrieve a credit report:
@@ -34,137 +32,41 @@ TU_AQM_PASSWORD="password_given_by_tu"
 TuAqmClient::get_credit_report(
   user_id: "user_id",
   password: "password",
-  application_receipt_date: "22Aug2017",
-  current_date: "22Aug2017",
-  first_name: "Daenerys",
-  last_name: "Stormborn",
-  gender: "1",
-  date_of_birth: "07Aug1987",
-  civil_status: "S",
+  application_receipt_date: "21Sep2017",
+  current_date: "21Sep2017",
+  first_name: "Willie",
+  last_name: "Diaz",
+  gender: "2",
+  date_of_birth: "29Dec1980",
+  civil_status: "M",
   id_type: "TIN",
-  id_number: "160083344",
+  id_number: "764492040",
   address_type: "R",
-  address: "#1 Castle Street, DragonStone, Westeros",
+  address: "02 8TH CROSSING LOURDES PHILIPPINES",
   contact_number_type: "R",
-  contact_number: "09986732889",
+  country_code: "63",
+  area_code: "0",
+  contact_number: "1111111",
+  bureau_request_type: "uat",
+  enquiry_account_type: "3000",
+  inquiry_amount: "900000",
+  postal_zip_code: "0000",
+  company_name: "None",
+  email_address: "wdiaze7@fastcompany.com",
 )
 ```
-Take note that `user_id` and `password` are given by Transunion.
 
-`TuAqmClient::get_credit_report` will then return the credit report as shown below:
+### Notes
+1. `user_id` and `password` are given by Transunion
+2. `country_code` is required and is always "63"
+3. `address` only accepts alphanumeric values
+4. `contact_number` is "0000000" if not available
+5. `bureau_request_type` is either "prod" or "uat"
+6. `inquiry_amount` is "0" (zero) if not available
+7. `postal_zip_code` is "0000" (four zeroes) if not available
+8. `company_name` is "None" (four zeroes) if not available
 
-```ruby
-{"CreditReport"=>
-  {"Header"=>
-    {"SegmentTag"=>"TUEF",
-     "Version11"=>"11",
-     "MemberReferenceNumber"=>"0000000000000000000000025",
-     "UserId"=>"BB03300101",
-     "SubjectReturnCode"=>"0",
-     "EnquiryControlNumber"=>"001457261",
-     "DateProcessed"=>"31082017",
-     "TimeProcessed"=>"182553"},
-   "NA"=>
-    {"NameSegment"=>
-      {"SegmentTagLength"=>"03",
-       "SegmentTag"=>"N01",
-       "FirstNameLength"=>"08",
-       "FirstName"=>"DAENERYS",
-       "LastNameLength"=>"09",
-       "LastName"=>"STORMBORN",
-       "CivilStatusLength"=>"01",
-       "CivilStatus"=>"S",
-       "DOBLength"=>"08",
-       "DOB"=>"07081987",
-       "GenderLength"=>"01",
-       "Gender"=>"1",
-       "NationalityLength"=>"03",
-       "Nationality"=>"PHL"}},
-   "ID"=>
-    {"IDSegment"=>
-      {"SegmentTagLength"=>"03",
-       "SegmentTag"=>"I01",
-       "IDNumberLength"=>"09",
-       "IDNumber"=>"160083344",
-       "IDTypeLength"=>"03",
-       "IDType"=>"TIN"}},
-   "PA"=>
-    {"PrimaryAddressSegment"=>
-      {"SegmentTagLength"=>"03",
-       "SegmentTag"=>"A01",
-       "AddressLine1FieldLength"=>"26",
-       "AddressLine1"=>"TEST TEST TEST MAKATI CITY",
-       "ResidentialAddress"=>"Y",
-       "OfficialAddressFieldLength"=>"01",
-       "OfficialAddress"=>"N",
-       "BillingAddress"=>"N",
-       "AddressOfOtherType"=>"N",
-       "AddressOfUnknownType"=>"N",
-       "ReportedViaAct"=>"N",
-       "FileSinceDate"=>"31082017",
-       "LastReportedDate"=>"31082017"}},
-   "PH"=>
-    {"ContactNumberSegment"=>
-      {"SegmentTagLength"=>"03",
-       "SegmentTag"=>"P01",
-       "ContactNumberFieldLength"=>"07",
-       "ContactNumber"=>"7035351",
-       "FormatFieldLength"=>"01",
-       "Format"=>"F",
-       "NumberTypeFieldLength"=>"01",
-       "NumberType"=>"R",
-       "ReportedViaAcct"=>"N",
-       "FileSinceDate"=>"31082017",
-       "LastReportedDate"=>"31082017",
-       "MultipleContributor"=>"N"}},
-   "EM"=>
-    {"EmploymentSegment"=>
-      {"SegmentTagLength"=>"03",
-       "SegmentTag"=>"M01",
-       "CompanyNameLength"=>"11",
-       "CompanyName"=>"XYZ COMPANY",
-       "NatureOfBusinessLength"=>"02",
-       "NatureOfBusiness"=>"99",
-       "EmploymentTypeLength"=>"01",
-       "EmploymentType"=>"E",
-       "OccupationLength"=>"02",
-       "Occupation"=>"99",
-       "EmploymentYearsLength"=>"01",
-       "EmploymentYears"=>"1",
-       "EmploymentMonthsLength"=>"02",
-       "EmploymentMonths"=>"11",
-       "CurrencyCodeLength"=>"03",
-       "CurrencyCode"=>"PHP",
-       "FileSinceDateFieldLength"=>"08",
-       "FileSinceDate"=>"31082017",
-       "LastReportedDate"=>"31082017"}},
-   "SM"=>
-    {"SummarySegment"=>
-      {"SegmentTagLength"=>"03",
-       "SegmentTag"=>"S01",
-       "OpenAccountLength"=>"01",
-       "OpenAccount"=>"0",
-       "ClosedAccountLength"=>"01",
-       "ClosedAccount"=>"0",
-       "AliasNameAlertLength"=>"01",
-       "AliasNameAlert"=>"0",
-       "EnquiryAlertLength"=>"01",
-       "EnquiryAlert"=>"0"}},
-   "SC"=>
-    {"ScoreSegment"=>
-      {"SegmentTagLength"=>"03",
-       "SegmentTag"=>"S01",
-       "ScoreTypeLength"=>"04",
-       "ScoreType"=>"GR01",
-       "ScoreLength"=>"02",
-       "Score"=>"-1",
-       "SegmentLength"=>"01",
-       "Segment"=>"1",
-       "PredictedProbabilityLength"=>"02",
-       "PredictedProbability"=>"-1",
-       "RiskGradeLength"=>"02",
-       "RiskGrade"=>"NA"}}}}
-```
+`TuAqmClient::get_credit_report` will then return the credit report as shown in sample_credit_report.md
 
 ## License
 
