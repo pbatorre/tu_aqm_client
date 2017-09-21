@@ -22,6 +22,7 @@ module TuAqmClient
       attr_accessor :postal_zip_code
       attr_accessor :country_code
       attr_accessor :area_code
+      attr_accessor :company_name
 
       SOAP_ACTION = "http://tempuri.org/IExternalSolutionExecution/ExecuteXMLString"
 
@@ -46,7 +47,8 @@ module TuAqmClient
         inquiry_amount:,
         postal_zip_code:,
         country_code:,
-        area_code:
+        area_code:,
+        company_name:
       )
 
         @user_id = user_id
@@ -71,6 +73,7 @@ module TuAqmClient
         @postal_zip_code = postal_zip_code
         @country_code = country_code
         @area_code = area_code
+        @company_name = company_name
       end
 
       def body
@@ -136,17 +139,17 @@ module TuAqmClient
                                   <PhoneNumber>#{contact_number}</PhoneNumber>
                                   <Extension></Extension>
                                   <EmailAddress></EmailAddress>
-                                  <EmploymentType></EmploymentType>
-                                  <EmploymentStatus></EmploymentStatus>
-                                  <NatureOfBusiness></NatureOfBusiness>
-                                  <Occupation></Occupation>
-                                  <CompanyName></CompanyName>
-                                  <EmploymentTimeYears></EmploymentTimeYears>
-                                  <EmploymentTimeMonths></EmploymentTimeMonths>
-                                  <YearsInBusiness></YearsInBusiness>
-                                  <GrossAnnualIncome></GrossAnnualIncome>
-                                  <GrossMonthlyIncome></GrossMonthlyIncome>
-                                  <EmploymentCurrencyCode></EmploymentCurrencyCode>
+                                  <EmploymentType>S</EmploymentType>
+                                  <EmploymentStatus>11</EmploymentStatus>
+                                  <NatureOfBusiness>99</NatureOfBusiness>
+                                  <Occupation>99</Occupation>
+                                  <CompanyName>#{company_name}</CompanyName>
+                                  <EmploymentTimeYears>0</EmploymentTimeYears>
+                                  <EmploymentTimeMonths>0</EmploymentTimeMonths>
+                                  <YearsInBusiness>0</YearsInBusiness>
+                                  <GrossAnnualIncome>0</GrossAnnualIncome>
+                                  <GrossMonthlyIncome>0</GrossMonthlyIncome>
+                                  <EmploymentCurrencyCode>PHP</EmploymentCurrencyCode>
                                   <PositionLevel />
                                   <PositionTitle></PositionTitle>
                                   <SourceOfFunds />

@@ -2,7 +2,6 @@ module TuAqmClient
   module Services
     class ResponseError < StandardError; end
     class MissingFieldsError < StandardError; end
-    class CreditReportExtractionError < StandardError; end
 
     class GetCreditReport
       attr_accessor :user_id
@@ -26,6 +25,7 @@ module TuAqmClient
       attr_accessor :postal_zip_code
       attr_accessor :country_code
       attr_accessor :area_code
+      attr_accessor :company_name
 
       def initialize(
         user_id:,
@@ -48,7 +48,8 @@ module TuAqmClient
         inquiry_amount:,
         postal_zip_code:,
         country_code:,
-        area_code:
+        area_code:,
+        company_name:
       )
 
         @user_id = user_id
@@ -72,6 +73,7 @@ module TuAqmClient
         @postal_zip_code = postal_zip_code
         @country_code = country_code
         @area_code = area_code
+        @company_name = company_name
       end
 
       def execute
@@ -97,6 +99,7 @@ module TuAqmClient
           postal_zip_code: postal_zip_code,
           country_code: country_code,
           area_code: area_code,
+          company_name: company_name,
         ).execute
 
         build_credit_report(response)
@@ -107,19 +110,26 @@ module TuAqmClient
       def build_credit_report(response)
         response_hash = Saxerator.parser(response.body)
 
-        dc_response = Hash.from_xml(response_hash.for_tag("s:Body").first["ExecuteXMLStringResponse"]["ExecuteXMLStringResult"])
+        execute_xml_string_result = response_hash.
+          for_tag("s:Body").
+          first["ExecuteXMLStringResponse"]["ExecuteXMLStringResult"]
 
-        raise_response_error(dc_response)
+        dc_response_parser = Saxerator.parser(execute_xml_string_result)
 
-        xmls = extract_xmls(dc_response["DCResponse"]["ContextData"]["Field"])
+        raise_response_error(dc_response_parser)
+
+        xmls = extract_xmls(dc_response_parser)
         raise_missing_field_error(xmls)
 
         extract_credit_report(xmls)
       end
 
       # Collects XML files. Ignores non-xmls
-      def extract_xmls(array)
-        array.map do |e|
+      def extract_xmls(dc_response_parser)
+        dc_response = dc_response_parser.for_tag("DCResponse").
+          first["ContextData"]["Field"]
+
+        dc_response.map do |e|
           begin
             Hash.from_xml(e)
           rescue
@@ -127,20 +137,9 @@ module TuAqmClient
         end.compact
       end
 
-      # Retrieve hash with key = "object"
       def extract_credit_report(xmls)
-        # Extract xml with "object" tag
-        object_xml = xmls.find do |xml|
-          xml.keys.include? "object"
-        end
-
-        begin
-          return Hash.from_xml(object_xml["object"]["Applicant"]["CreditReport"])
-        rescue
-          raise(
-            CreditReportExtractionError,
-            "Error extracting the credit report due do unexpected response"
-          )
+        xmls.find do |xml|
+          xml.keys.include? "CreditReport"
         end
       end
 
@@ -155,12 +154,14 @@ module TuAqmClient
         end
       end
 
-      def raise_response_error(dc_response)
+      def raise_response_error(dc_response_parser)
+        dc_response = dc_response_parser.for_tag("DCResponse").first
+
         raise(
           ResponseError,
           dc_response.to_json
-        ) if dc_response["DCResponse"]["Status"] == "Failed" ||
-          dc_response["DCResponse"]["Status"] == "Exception"
+        ) if dc_response["Status"] == "Failed" ||
+          dc_response["Status"] == "Exception"
       end
     end
   end
