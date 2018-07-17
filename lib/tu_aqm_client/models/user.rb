@@ -2,6 +2,7 @@ module TuAqmClient
   module Models
     class User
       include ActiveModel::Validations
+      include ActiveSupport::JSON
 
       validates :id_number, :id_type, presence: true
       validates :id_expiration_date, presence: true, if: :has_expiration?
