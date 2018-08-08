@@ -4,7 +4,17 @@ module TuAqmClient
       include ActiveModel::Validations
       include ActiveSupport::JSON
 
-      validates :id_number, :id_type, presence: true
+      validates :first_name,
+                :last_name,
+                :date_of_birth,
+                :gender,
+                :civil_status,
+                :contact_number,
+                :email_address,
+                :id_number,
+                :id_type,
+                presence: true
+
       validates :id_expiration_date, presence: true, if: :has_expiration?
 
       def has_expiration?
